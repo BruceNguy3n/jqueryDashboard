@@ -233,13 +233,13 @@ var dashboard =
 			$('#thumbnail').empty();
 			return;
 		}
-		$.each(dashboard.imageArr, function(i, item))
+		$.each(dashboard.imageArr, function(i, item)
 		{
 			if(parseInt(selectedPic.val(), 10) == item.id)
 			{
 				$('#thumbnail').data('large', item.path).html('<img src="' + item.thumb + '">');
 				return;
 			}
-		}
+		});
 	}
 };
