@@ -115,7 +115,7 @@ var dashboard =
 			jsonp: 'jsonp',
 			success: function(data)
 			{
-				var x = {a: data},
+				var x = {a: data};
 				console.log(x);
 				$('#reddit').html(dashboard.getRedditThreadList(data.data.children));
 			},
