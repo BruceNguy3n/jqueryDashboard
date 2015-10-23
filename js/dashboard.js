@@ -140,7 +140,7 @@ var dashboard =
 				+ 'comments : ' + aPost.num_comments + '</a>)';
 			strHtml += '</li>';
 		}
-		str += '</ul>';
+		strHtml += '</ul>';
 		return strHtml;
 	},
 	setupWeather: function()
