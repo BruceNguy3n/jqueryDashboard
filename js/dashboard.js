@@ -25,7 +25,7 @@ var dashboard =
 			placeholder: 'portlet-placeholder ui-corner-all'
 		});
 
-		$('.porlet')
+		$('.portlet')
 			.addClass('ui-widget ui-widget-content ui-helper-clearfix ui-corner-all')
 			.find('.porlet-header')
 			.addClass('ui-widget-header ui-corner-all')
