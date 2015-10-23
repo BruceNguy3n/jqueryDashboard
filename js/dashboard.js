@@ -33,7 +33,7 @@ var dashboard =
 
 		$('.portlet-toggle').click(function()
 		{
-			var $icon = $(this;)
+			var $icon = $(this);
 			icon.toggleClass('ui-icon-minusthick ui-icon-plusthick');
 			icon.closet('.portlet').find('.porlet-content').toggle('fast');
 		});
