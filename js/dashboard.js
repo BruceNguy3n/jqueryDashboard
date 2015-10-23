@@ -113,10 +113,10 @@ var dashboard =
 	{
 		var cities = ['Delhi,India', 'London, UK', 'New York,USA', 'Tokyo,Japan'];
 		var strCity = '<option value=0>select a city</option>';
-		$(cities).each(function(i, item))
+		$(cities).each(function(i, item)
 		{
 			strCity += '<option value="' + item + '">' + item + '</option>';
-		};
+		});
 		$('#selCity').html(strCity);
 
 		$('#selCity').change(function()
