@@ -20,14 +20,14 @@ var dashboard =
 		$('.column').sortable(
 		{
 			connectWith: '.column',
-			handle: '.porlet-handler',
-			cancel: '.porlet-toggle',
+			handle: '.portlet-handler',
+			cancel: '.portlet-toggle',
 			placeholder: 'portlet-placeholder ui-corner-all'
 		});
 
 		$('.portlet')
 			.addClass('ui-widget ui-widget-content ui-helper-clearfix ui-corner-all')
-			.find('.porlet-header')
+			.find('.portlet-header')
 			.addClass('ui-widget-header ui-corner-all')
 			.prepend('<span class="ui-icon ui-icon-minusthick portlet-toggle"></span>');
 
@@ -35,7 +35,7 @@ var dashboard =
 		{
 			var $icon = $(this);
 			icon.toggleClass('ui-icon-minusthick ui-icon-plusthick');
-			icon.closet('.portlet').find('.porlet-content').toggle('fast');
+			icon.closet('.portlet').find('.portlet-content').toggle('fast');
 		});
 		$('#loadingWeather').hide();
 		$('#weatherInfo').hide();
