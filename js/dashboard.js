@@ -34,8 +34,8 @@ var dashboard =
 		$('.portlet-toggle').click(function()
 		{
 			var $icon = $(this);
-			icon.toggleClass('ui-icon-minusthick ui-icon-plusthick');
-			icon.closet('.portlet').find('.portlet-content').toggle('fast');
+			$icon.toggleClass('ui-icon-minusthick ui-icon-plusthick');
+			$icon.closet('.portlet').find('.portlet-content').toggle('fast');
 		});
 		$('#loadingWeather').hide();
 		$('#weatherInfo').hide();
