@@ -111,7 +111,58 @@ var dashboard =
 	},
 	setupWeather: function()
 	{
+		var cities = ['Delhi,India', 'London, UK', 'New York,USA', 'Tokyo,Japan'];
+		var strCity = '<option value=0>select a city</option>';
+		$(cities).each(function(i, item))
+		{
+			strCity += '<option value="' + item + '">' + item + '</option>';
+		};
+		$('#selCity').html(strCity);
 
+		$('#selCity').change(function()
+		{
+			var selection = $(this).val();
+			if(selection == 0)
+			{
+				return;
+			}
+
+			dashboard.displayWeather(selection);
+		});
+	},
+	displayWeather: function(city)
+	{
+		$('#loadingWeather').show();
+		$('#weatherInfo').hide();
+		var apiURL = 'http://api.openweathermap.org/data/2.5/weather?q=' + city;
+		$.ajax(
+		{
+			url: apiURL,
+			dataType: 'jsonp',
+			jsonp: 'callback',
+			success: function(weatherData)
+			{
+				var x = {data: weatherData};
+				console.log(x);
+				$('#temp').html((weatherData.main.temp - 273.15).toFixed(2) + 'degree celcius');
+				$('#tempMin').html((weatherData.main.temp_min - 273.15).toFixed(2) + 'degree celcius');
+				$('#tempMax').html((weatherData.main.temp_max - 273.15).toFixed(2) + ' degree celcius');
+				$('#cloudiness').html((weatherData.clouds.all) + ' % cloudy');
+
+				var googleUrl = 'https://www.google.com/maps?q=' + weatherData.coord.lat + ',' 
+									+ weatherData.coord.lon;
+				var googleLink = ' <a href="' + googleUrl + '" target="_blank">View on Google maps'
+									+ '</a>';
+				$('#location').html(weatherData.coord.lat + ', ' + weatherData.coord.lon + googleLink);
+
+				$('#weatherInfo').show();
+				$('#loadingWeather').hide();
+			},
+			error: function(a, b, c)
+			{
+				console.log('Error getting weather.');
+			}
+		});
 	},
 	setupImageSelector: function()
 	{
