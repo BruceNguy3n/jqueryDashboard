@@ -35,7 +35,7 @@ var dashboard =
 		{
 			var $icon = $(this);
 			$icon.toggleClass('ui-icon-minusthick ui-icon-plusthick');
-			$icon.closet('.portlet').find('.portlet-content').toggle('fast');
+			$icon.closest('.portlet').find('.portlet-content').toggle('fast');
 		});
 		$('#loadingWeather').hide();
 		$('#weatherInfo').hide();
@@ -111,7 +111,7 @@ var dashboard =
 	},
 	setupWeather: function()
 	{
-		var cities = ['Delhi,India', 'London, UK', 'New York,USA', 'Tokyo,Japan'];
+		var cities = ['Delhi,India', 'London,UK', 'New York,USA', 'Tokyo,Japan'];
 		var strCity = '<option value=0>select a city</option>';
 		$(cities).each(function(i, item)
 		{
@@ -134,7 +134,8 @@ var dashboard =
 	{
 		$('#loadingWeather').show();
 		$('#weatherInfo').hide();
-		var apiURL = 'http://api.openweathermap.org/data/2.5/weather?q=' + city;
+		var apiURL = 'http://api.openweathermap.org/data/2.5/weather?q=' + city
+						+ '&appid=bd82977b86bf27fb59a04b61b657fb6f';
 		$.ajax(
 		{
 			url: apiURL,
