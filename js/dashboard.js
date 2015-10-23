@@ -102,7 +102,7 @@ var dashboard =
 		$('#pics').on('click', 'a.media', function()
 		{
 			var img = $(this).data('img');
-			$('dialog').html('<img src="' + img + '">').dialog({modal: true});
+			$('#dialog').html('<img src="' + img + '">').dialog({modal: true});
 		});
 	},
 	initReddit: function()
