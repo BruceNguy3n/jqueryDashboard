@@ -22,7 +22,8 @@ var dashboard =
 			connectWith: '.column',
 			handle: '.portlet-header',
 			cancel: '.portlet-toggle',
-			placeholder: 'portlet-placeholder ui-corner-all'
+			placeholder: 'portlet-placeholder ui-corner-all',
+			cursor: 'move'
 		});
 
 		$('.portlet')
