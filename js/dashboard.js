@@ -107,7 +107,41 @@ var dashboard =
 	},
 	initReddit: function()
 	{
+		var apiURL = 'http://www.reddit.com/r/all.json';
+		$.ajax(
+		{
+			url: apiURL,
+			dataType: 'jsonp',
+			jsonp: 'jsonp',
+			success: function(data)
+			{
+				var x = {a: data},
+				console.log(x);
+				$('#reddit').html(dashboard.getRedditThreadList(data.data.children));
+			},
+			error: function(a, b, c)
+			{
+				alert('Error getting data');
+			}
+		});
+	},
+	getRedditThreadList: function(postListing)
+	{
+		var strHtml = '<ul>';
+		for(var i = 0; i < postListing.length; i++)
+		{
+			var aPost = postListing[i].data;
+			var permaLink = 'http://reddit.com' + aPost.permaLink;
 
+			strHtml += '<li>';
+			strHtml += (i + 1) + ' - <span>[' + aPost.subreddit + ']</span>'
+				+ ' <a href="' + aPost.url + '" target="_blank">' + aPost.title + '</a> (score: '
+				+ aPost.score + '| <a class="comments" href="' + permaLink + '" target="_blank"> '
+				+ 'comments : ' + aPost.num_comments + '</a>)';
+			strHtml += '</li>';
+		}
+		str += '</ul>';
+		return strHtml;
 	},
 	setupWeather: function()
 	{
@@ -145,8 +179,8 @@ var dashboard =
 			{
 				var x = {data: weatherData};
 				console.log(x);
-				$('#temp').html((weatherData.main.temp - 273.15).toFixed(2) + 'degree celcius');
-				$('#tempMin').html((weatherData.main.temp_min - 273.15).toFixed(2) + 'degree celcius');
+				$('#temp').html((weatherData.main.temp - 273.15).toFixed(2) + ' degree celcius');
+				$('#tempMin').html((weatherData.main.temp_min - 273.15).toFixed(2) + ' degree celcius');
 				$('#tempMax').html((weatherData.main.temp_max - 273.15).toFixed(2) + ' degree celcius');
 				$('#cloudiness').html((weatherData.clouds.all) + ' % cloudy');
 
