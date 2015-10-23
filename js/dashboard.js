@@ -20,7 +20,7 @@ var dashboard =
 		$('.column').sortable(
 		{
 			connectWith: '.column',
-			handle: '.portlet-handler',
+			handle: '.portlet-header',
 			cancel: '.portlet-toggle',
 			placeholder: 'portlet-placeholder ui-corner-all'
 		});
@@ -201,6 +201,45 @@ var dashboard =
 	},
 	setupImageSelector: function()
 	{
+		this.imageArr =
+		[	
+			{id: 1, name: 'Temple', path: 'images/1.jpg', thumb: 'images/thumb/1.jpg'},
+			{id: 2, name: 'Colors', path: 'images/2.jpg', thumb: 'images/thumb/2.jpg'},
+			{id: 3, name: 'Directions', path: 'images/3.jpg', thumb: 'images/thumb/3.jpg'},
+			{id: 4, name: 'Flag', path: 'images/4.jpg', thumb: 'images/thumb/4.jpg'},
+			{id: 5, name: 'A bit snow', path: 'images/5.jpg', thumb: 'images/thumb/5.jpg'}
+		];
+		var str = '<option value="0">select image</option>';
+		$.each(dashboard.imageArr, function(i, item)
+		{
+			str += '<option value="' + item.id + '">' + item.name + '</option>';
+		});
+		$('#imageSelector').html(str);
+		$('#imageSelector').on('change', function()
+		{
+			dashboard.changeImage($(this));
+		});
 
+		$('#thumbnail').on('click', function()
+		{
+			var imagePath = $(this).data('large');
+			$('#dialog').html('<img src="' + imagePath + '">').dialog({modal: true, width: 'auto', top: 0});
+		});
+	},
+	changeImage: function(selectedPic)
+	{
+		if(parseInt(selectedPic.val(), 10) == 0)
+		{
+			$('#thumbnail').empty();
+			return;
+		}
+		$.each(dashboard.imageArr, function(i, item))
+		{
+			if(parseInt(selectedPic.val(), 10) == item.id)
+			{
+				$('#thumbnail').data('large', item.path).html('<img src="' + item.thumb + '">');
+				return;
+			}
+		}
 	}
 };
